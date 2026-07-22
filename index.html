@@ -283,6 +283,41 @@ body::before{
     }
 
 }
+
+
+
+
+
+        @media (max-width:900px){
+
+    body{
+        padding:10px;
+        overflow:hidden;
+    }
+
+    .container{
+        display:flex;
+        flex-direction:column !important;
+        height:calc(100vh - 20px);
+    }
+
+    .photo{
+        width:100% !important;
+        height:260px;
+        order:0;
+        flex-shrink:0;
+    }
+
+    .text{
+        width:100% !important;
+        height:auto;
+        flex:1;
+        overflow-y:auto;
+        order:1;
+        padding:25px;
+    }
+
+}
     </style>
 </head>
 <body>
