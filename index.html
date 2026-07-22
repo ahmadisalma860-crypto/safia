@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نامه تولد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+      *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(180deg,#201813,#14100d);
+    padding:20px;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Amiri',serif;
+    position:relative;
+    overflow:hidden;
+
+    opacity:0;
+    transition:opacity .8s ease;
+}
+
+body.show{
+    opacity:1;
+}
+
+/* بافت قدیمی */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("https://www.transparenttextures.com/patterns/old-wall.png");
+    opacity:.08;
+    pointer-events:none;
+}
+
+.container{
+    width:100%;
+    height:calc(100vh - 40px);
+    display:flex;
+    background:#2b221c;
+    border:1px solid rgba(199,170,120,.25);
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,.65);
+}
+
+.container::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom,rgba(255,255,255,.04),transparent);
+    pointer-events:none;
+}
+
+.text{
+    width:52%;
+    padding:50px 55px;
+    overflow-y:auto;
+    line-height:2;
+    font-size:18px;
+    background:#33271f;
+    color:#ead8b5;
+    scrollbar-width:none;
+}
+
+.text::-webkit-scrollbar{
+    display:none;
+}
+
+.text p{
+    color:#ead8b5;
+}
+
+.photo{
+    width:48%;
+    overflow:hidden;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:sepia(.35) brightness(.82) contrast(1.08);
+    transition:transform .8s ease;
+}
+
+.photo:hover img{
+    transform:scale(1.04);
+}
+
+/* Music Button */
+
+.music-btn{
+    position:fixed;
+    top:25px;
+    left:25px;
+    z-index:100;
+    background:linear-gradient(135deg,#8b6b42,#5c3d1f);
+    color:#fff7e8;
+    border:1px solid rgba(255,220,170,.2);
+    padding:14px 24px;
+    border-radius:50px;
+    font-size:17px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    box-shadow:0 8px 30px rgba(0,0,0,.45);
+    transition:.4s;
+}
+
+.music-btn:hover{
+    transform:translateY(-4px) scale(1.05);
+    background:linear-gradient(135deg,#a27a4c,#6b4522);
+    box-shadow:0 15px 35px rgba(0,0,0,.55);
+}
+
+/* Welcome Modal */
+
+.welcome-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(8,6,5,.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:200;
+    opacity:1;
+    transition:opacity .6s ease;
+    backdrop-filter:blur(5px);
+}
+
+.modal-content{
+    background:#2d241d;
+    border:1px solid rgba(201,171,124,.3);
+    color:#ead8b5;
+    padding:45px 55px;
+    border-radius:18px;
+    text-align:center;
+    max-width:460px;
+    box-shadow:0 25px 70px rgba(0,0,0,.65);
+}
+
+.modal-content h2{
+    color:#f2d49d;
+    margin-bottom:18px;
+    font-size:28px;
+}
+
+.modal-content p{
+    color:#dbc6a0;
+    font-size:19px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+.modal-btn{
+    background:linear-gradient(135deg,#9b7447,#654022);
+    color:white;
+    border:none;
+    padding:16px 50px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:19px;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);
+}
+
+.modal-btn:hover{
+    transform:scale(1.06);
+    background:linear-gradient(135deg,#b78a54,#7a512a);
+}
+
+    /* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:900px){
+
+    body{
+        padding:10px;
+        overflow:hidden;
+    }
+
+    .container{
+        flex-direction:column;
+        height:calc(100vh - 20px);
+        min-height:0;
+        border-radius:15px;
+    }
+
+    .photo{
+        width:100%;
+        height:300px;
+        flex-shrink:0;
+        order:-1;
+    }
+
+    .photo img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    .text{
+        width:100%;
+        flex:1;
+        overflow-y:auto;
+        padding:30px 25px;
+        font-size:17px;
+        line-height:2.1;
+    }
+
+    .music-btn{
+        top:15px;
+        left:15px;
+        padding:12px 18px;
+        font-size:15px;
+    }
+
+    .modal-content{
+        width:90%;
+        padding:30px 20px;
+    }
+
+    .modal-content h2{
+        font-size:23px;
+    }
+
+    .modal-content p{
+        font-size:17px;
+    }
+
+    .modal-btn{
+        width:100%;
+    }
+
+    .candle-light{
+        width:220px;
+        height:220px;
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .photo{
+        height:230px;
+    }
+
+
+    .text{
+        padding:22px 18px;
+        font-size:16px;
+        line-height:2;
+        overflow-y:auto;
+    }
+
+
+    .music-btn{
+        border-radius:50%;
+        width:55px;
+        height:55px;
+        padding:0;
+        justify-content:center;
+    }
+
+
+    .music-btn span{
+        display:none;
+    }
+
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- متن چپ -->
+       <!-- متن چپ -->
+        <div class="text">
+            
+            <p>سلام، قشنگ‌ترینِ من.</p>
+            <p>پیش از هر چیز، تولدت مبارک. ❤️</p>
+            <p>چه خوب که به دنیا آمدی و چه خوب‌تر که قسمت شد بهترین دوست من باشی.</p>
+            <p>آرزو می‌کنم سال‌های سال، در نهایت سلامتی، آرامش، خوشبختی و لبخند، تولدت را در کنار عزیزانت جشن بگیری و هیچ‌وقت دلت از شادی خالی نباشد.</p>
+            <p>نمی‌دانم از کجا شروع کنم و از چه بگویم...</p>
+            <p>شاید برای تو، تولدت فقط روزی باشد که هر سال مثل سال‌های قبل از راه می‌رسد؛ اما برای من، روزی کاملاً متفاوت و خاص است. روزی که می‌توانم بخشی از حرف‌های دلم را برایت بگویم؛ روزی که می‌توانم از سال‌هایی بگویم که کنار هم بودیم.</p>
+            <p>شاید این حرف‌ها را بارها با هم گفته باشیم، شاید بارها به خاطراتمان خندیده باشیم، اما برای من، خاطره‌های دوستی‌مان آن‌قدر شیرین و ارزشمندند که اگر سال‌ها هم درباره‌شان حرف بزنم، باز هم کم است.</p>
+            <p>این‌که چگونه با هم آشنا شدیم، چگونه از دو غریبه به بهترین دوست‌های هم تبدیل شدیم و چه لحظه‌های زیبایی را با هم تجربه کردیم... همه‌شان برای من از قشنگ‌ترین خاطرات زندگی‌ام هستند.</p>
+            <p>فقط کاش فرصت بیشتری برای کنار هم بودن داشتیم. کاش جاهای بیشتری را با هم می‌رفتیم، عکس‌های بیشتری کنار هم می‌گرفتیم و خاطره‌های بیشتری برای مرور کردن می‌ساختیم.</p>
+            <p>متأسفانه قسمت نشد آن‌قدر که دلمان می‌خواست کنار هم بمانیم. شاید به اندازه‌ی کافی فرصت شناختن همدیگر را نداشتیم، شاید هنوز چیزهای زیادی هست که از هم نمی‌دانیم، یا شاید هم تو هیچ‌وقت به اندازه‌ای که برای من عزیز هستی، من برایت عزیز نباشم...</p>
+            <p>اما می‌خواهم فقط یک چیز را بدانی؛ تو همیشه کسی بودی که معنای واقعیِ «دوست» را برایم تعریف کردی.</p>
+            <p>آن‌قدر برایم عزیز و ارزشمندی که هیچ واژه‌ای توان توصیف جایگاهت را در قلبم ندارد. کاش می‌توانستم احساسی را که نسبت به تو دارم، همان‌گونه که در دلم هست، برایت به تصویر بکشم.</p>
+            <p>زیبای من...<br>بهترین دوست من...</p>
+            <p>از صمیم قلب آرزو می‌کنم تا آخرین لحظه‌ی زندگی‌مان، دوستی‌مان پابرجا بماند. دوست دارم هر سال، در روز تولدت، دوباره از احساسم برایت بگویم؛ حتی اگر این حرف‌ها تکراری شوند، چون هیچ‌وقت ارزش و جایگاه تو برای من تکراری نمی‌شود.</p>
+            <p>چه اتفاق زیبایی بود که روزی، کاملاً اتفاقی، کنار هم نشستیم و همان اتفاق ساده، آغاز یکی از ارزشمندترین دوستی‌های زندگی من شد.</p>
+            <p>همیشه حسرت این را می‌خورم که کاش دست‌کم چند عکس دونفره از خودمان داشتیم؛ عکس‌هایی که هر وقت دلتنگ می‌شدم، با دیدنشان فاصله‌ی میانمان را کمی راحت‌تر تحمل می‌کردم.</p>
+            <p>می‌دانم که خیلی احساساتی هستم و شاید این همه حرف برایت عجیب باشد؛ اما دوست دارم تمام زیبایی‌هایی را که در وجودت می‌بینم، برایت بگویم.</p>
+            <p>کاش فقط یک بار می‌توانستی خودت را از نگاه من ببینی؛ آن وقت می‌فهمیدی که چقدر برایم عزیز، دوست‌داشتنی و باارزشی.</p>
+            <p>درست است... تو تنها دوست من نیستی و این را کاملاً می‌پذیرم؛ اما در میان تمام آدم‌هایی که در زندگی‌ام هستند، تو برای من جایگاه دیگری داری و ارزشمندترین دوستم هستی.</p>
+            <p>و یک چیز دیگر...</p>
+            <p>متأسفم که در سنی با هم آشنا شدیم که هنوز خودِ واقعی‌ام را نمی‌شناختم؛ زمانی که شاید آن‌قدر که باید، لیاقت محبت‌های خالصانه‌ی تو را نداشتم.</p>
+            <p>اگر محدودیت زمان نبود، می‌توانستم تا سال‌ها درباره‌ی تو بنویسم. حتی اگر کتابی کامل هم به تو اختصاص دهم، باز هم احساس می‌کنم برای تو و ارزشت کافی نیست؛ چون تو بسیار فراتر از تمام این واژه‌هایی.</p>
+            <p>امیدوارم روزی تمام این «کاش»ها به حقیقت تبدیل شوند؛ روزی که بتوانیم کنار هم، نه از راه دور، بلکه شانه‌به‌شانه، تولدت را جشن بگیریم.</p>
+            <p>از همین فاصله، تو را محکم در آغوش می‌گیرم، می‌بوسمت و از صمیم قلب بهترین آرزوها را برایت دارم.</p>
+            <p>ان‌شاءالله این سال، آغاز زیباترین، آرام‌ترین و خوشبخت‌ترین فصل‌های زندگی‌ات باشد.</p>
+            <p style="margin-top:50px; text-align:center; font-size:23px;">تولدت مبارک، بهترینِ من. ❤️</p>
+        </div>
+        
+        <!-- عکس راست -->
+        <div class="photo">
+            <img src="images/photo_2026-07-20_13-09-59.jpg" alt="عکس">
+        </div>
+    </div>
+
+    <!-- دکمه موسیقی با آیکون زیبا -->
+    <button class="music-btn" id="musicBtn">
+        <i class="fas fa-music"></i> 
+        <span id="btnText">پخش آهنگ</span>
+    </button>
+
+    <!-- مودال خوش‌آمد با آیکون -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-birthday-cake" style="color:#e74c3c; margin-left:10px;"></i> تولدت مبارک!</h2>
+            <p>ابتدا آهنگ را پخش کن تا حال و هوای نامه زیباتر بشه❤️</p>
+            <button class="modal-btn" id="startBtn">
+                <i class="fas fa-play-circle"></i> پخش آهنگ 
+            </button>
+        </div>
+    </div>
+
+   <!-- Music -->
+<audio id="music" loop>
+    <source src="music/Party.mp3" type="audio/mpeg">
+    مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+</audio>
+
+<script>
+    const musicBtn = document.getElementById('musicBtn');
+    const welcomeModal = document.getElementById('welcomeModal');
+    const startBtn = document.getElementById('startBtn');
+    const music = document.getElementById('music');
+
+    let isPlaying = false;
+
+    window.addEventListener("load", () => {
+    document.body.classList.add("show");
+    welcomeModal.style.display = "flex";
+});
+
+    startBtn.addEventListener('click', () => {
+        welcomeModal.style.opacity = '0';
+        setTimeout(() => {
+            welcomeModal.style.display = 'none';
+        }, 600);
+
+        playMusic();
+    });
+
+    musicBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseMusic();
+        } else {
+            playMusic();
+        }
+    });
+
+    function playMusic() {
+        music.play();
+        isPlaying = true;
+        musicBtn.innerHTML = `<i class="fas fa-pause"></i> <span>توقف آهنگ</span>`;
+    }
+
+    function pauseMusic() {
+        music.pause();
+        isPlaying = false;
+        musicBtn.innerHTML = `<i class="fas fa-music"></i> <span>پخش آهنگ</span>`;
+    }
+
+
+    // Fade Out هنگام رفتن به صفحه بعد
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+
+        if (
+            this.target === "_blank" ||
+            this.href.startsWith("javascript:") ||
+            this.href === "#"
+        ) return;
+
+        e.preventDefault();
+
+        document.body.style.opacity = "0";
+
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 800);
+    });
+});
+</script>
+</body>
+</html>
